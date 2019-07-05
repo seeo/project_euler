@@ -3,11 +3,22 @@ The sum of these multiples is 23.
 
 Hence, find the sum of all the multiples of 3 or 5 below 1000. */
 
-//first we get comfortable with getting numbers 3,5,6,9 from within and inclu. 0 to 10.
+//first we get comfortable with getting numbers 3,5,6,9 for integers below 10.
 //Then sum them up, check if result == 23
 
-let limit = 10;
-
-for(let i=0; i<name; i++){
-
+const sum_multiples_of_3_and_5 = () => {
+    let limit = 1000;
+    let result = 0;
+    //initialise a for loop with i beginning at zero, and limit set at 10.
+    for (let i = 0; i < limit; i++) {
+        if (i % 3 === 0 || i % 5 === 0) {
+            result += i;
+        }
+    }
+    console.log(result);
+    return result;
 }
+
+sum_multiples_of_3_and_5();
+
+//for limit === 1000, the ans is 233168;
