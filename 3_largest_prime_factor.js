@@ -53,3 +53,7 @@ const getPrimeFactors = () => {
 //initialize the function:
 getPrimeFactors();
 
+//recursive version here?
+
+
+
