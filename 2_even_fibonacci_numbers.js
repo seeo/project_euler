@@ -13,8 +13,9 @@ exceed four million, find the sum of the even - valued terms.
 // // let limit = 377; //the 13th term;
 
 //the modified fibo function that checks for limit
-let arr1 = [];
+
 module.exports.fiboLimit = (limit) => {
+    let arr1 = [];
     //push the first two terms into array 1:
     arr1.push(1); //the first term, the 0th element in the array i.e. i == 0;
     arr1.push(2);// the second term, the 1st element in the array i.e. i ==1;
@@ -43,8 +44,20 @@ module.exports.fiboLimit = (limit) => {
 
 //now create a helper function that leverages on fiboLimit(limit) to sum up only the even-valued terms...
 
-const sumEvenTerms = () => {
-
+module.exports.getSumEvenTerms = (limit) => {
+    let arrFiboLimit = this.fiboLimit(limit);
+    const isEven = (value) => {
+        if(value%2 === 0){
+            return value;
+        }
+    }
+    let arrEvenTerms = arrFiboLimit.filter(isEven);
+    const getSumEvenTerms = arr => arr.reduce((a,b)=>a+b,0);
+    let sum = getSumEvenTerms(arrEvenTerms);
+    console.log(`The array for only even terms in a fibo sequence up to but excluding values that exceed ${limit} is: `, arrEvenTerms);
+    console.log(`The sum of even terms in a fibo sequence up to but excluding values that exceed ${limit} is: `, sum);
+    return sum;
+    // return sum of arrEvenTerms;
 }
 
 
@@ -55,9 +68,7 @@ const sumEvenTerms = () => {
 // fiboLimit(377);
 
 
-
-
-//fibo function here:
+//generic fibo function here:
 let arr2 = [];
 module.exports.fibo = (number) =>{
     let i = 0;
