@@ -15,6 +15,7 @@ module.exports.checkIfProductIsPalindrome = (product) => {
 
     let sProduct = product.toString();
     let output = [];
+    let zero = 0;
 
     for (let i = 0; i < sProduct.length; ++i) {
         output.push(+sProduct.charAt(i));
@@ -42,40 +43,33 @@ module.exports.checkIfProductIsPalindrome = (product) => {
         return product;
     } else {
         console.log("Nooo...: ", toNumberJoinedReversedOutput);
+        return zero;
     }
 }
 
 //now we create a function to create possible products that may be a palindrome...
 
 module.exports.getGreatestPalindrome =() => {
-    let greatestPalindrome = 0;
-    let greaterPalindrome = 0;
+    //assume at first that the greatest palindrome is 12321l; which is the product of 111 and 111;
+    let greatestPalindrome = 12321;
     let test = 0;
-    let x = 100;
     let y = 100;
 
     for (x = 100; x < 1000; ++x){
+        //the first outer loop will start with x ==100;
+            for (y =100; y <1000; ++y){
+            //we iterate over a range of y: fixing x===100, we increase y over 100 through 1000;
+            test = this.checkIfProductIsPalindrome(x*y);
+            //if the test if a palindrome, the product of x and y will be returned, else test === value of zero;
+                if(greatestPalindrome < test){
+                    //if the test is bigger than the currently greatest palindrome, then we re-assign the value of greatest
+                    greatestPalindrome = test;
+                }
+            }
         test = this.checkIfProductIsPalindrome(x*y);
-        if (greatestPalindrome < this.checkIfProductIsPalindrome(x * y)) {
-            greatestPalindrome = this.checkIfProductIsPalindrome(x * y);
-        } else {
-            greaterPalindrome = this.checkIfProductIsPalindrome(x * y);
-            greatestPalindrome = this.checkIfProductIsPalindrome((x + 1) * y);
-            if (greatestPalindrome > greaterPalindrome) {
-                greaterPalindrome = greatestPalindrome;
-            }
+        if(greatestPalindrome < test){
+            greatestPalindrome = test;
         }
-
-
-        for (y = 100; y< 1000; ++y){
-            greaterPalindrome = this.checkIfProductIsPalindrome(x * y);
-            greatestPalindrome = this.checkIfProductIsPalindrome(x * (y+1));
-            if (greatestPalindrome > greaterPalindrome){
-                greaterPalindrome = greatestPalindrome;
-            }
-        }
-
-
     }
     console.log('greatest palindrome is: ', greatestPalindrome);
     return greatestPalindrome;
